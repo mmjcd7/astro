@@ -27,10 +27,20 @@ const unit = hero.speedUnit ?? hero.speed_unit ?? 'Gbps';
       <div class="sub">symmetric download / upload</div>
     </div>
   </div>
+  <a class="credit" href="https://commons.wikimedia.org/wiki/File:Kuala_Lumpur,_Malaysia,_KLCC_from_KL_Tower.jpg" target="_blank" rel="noopener">Photo: Vyacheslav Argenberg, CC BY 4.0</a>
 </section>
 
 <style>
-  .hero { background: radial-gradient(1200px 600px at 80% -10%, #1f3d7a 0%, var(--navy) 55%); color: #fff; padding: 96px 0; }
+  .hero {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(11,27,58,.92) 0%, rgba(11,27,58,.7) 55%, rgba(11,27,58,.45) 100%),
+      url('/hero-klcc.jpg') center / cover no-repeat;
+    color: #fff;
+    padding: 96px 0;
+  }
+  .credit { position: absolute; right: 12px; bottom: 8px; font-size: .7rem; color: rgba(255,255,255,.5); }
+  .credit:hover { color: rgba(255,255,255,.85); }
   .inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
   .light { color: rgba(255,255,255,.75); }
   .eyebrow.light { color: var(--orange); }
