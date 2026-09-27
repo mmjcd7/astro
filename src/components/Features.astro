@@ -1,0 +1,29 @@
+---
+const features = [
+  { title: 'Whole-home mesh Wi‑Fi', text: 'Every plan from 1Gbps ships with mesh units so the signal reaches the back room.' },
+  { title: 'TV built in', text: 'Local and international channels plus on‑demand, on your TV, phone or tablet.', id: 'tv' },
+  { title: 'Bundle a mobile line', text: 'Add a postpaid line to your fibre bill and save RM20 a month per line.' },
+  { title: '24/7 support', text: 'Chat, call or drop by a store. Technicians available seven days a week.', id: 'support' },
+];
+---
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Why fibre with us</p>
+    <h2>One bill. One app. Everything connected.</h2>
+    <div class="grid grid-4 list">
+      {features.map(f => (
+        <div class="card" id={f.id}>
+          <div class="icon"></div>
+          <h3>{f.title}</h3>
+          <p class="muted">{f.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .list { margin-top: 2rem; }
+  .icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--orange), #ffb27a); margin-bottom: 1rem; }
+  .muted { color: var(--muted); margin: 0; }
+</style>

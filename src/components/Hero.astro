@@ -1,0 +1,33 @@
+<section class="hero">
+  <div class="container inner">
+    <div>
+      <p class="eyebrow light">Home Fibre</p>
+      <h1>Fibre that keeps up<br />with the whole house.</h1>
+      <p class="lead light">Up to 2Gbps symmetric speeds, mesh Wi‑Fi included, and installation in as fast as 3 working days.</p>
+      <div class="cta">
+        <a href="#plans" class="btn btn-primary">See plans</a>
+        <a href="#coverage" class="btn btn-ghost">Check coverage</a>
+      </div>
+    </div>
+    <div class="speed" aria-hidden="true">
+      <div class="ring"></div>
+      <div class="num"><span>2</span>Gbps</div>
+      <div class="sub">symmetric download / upload</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { background: radial-gradient(1200px 600px at 80% -10%, #1f3d7a 0%, var(--navy) 55%); color: #fff; padding: 96px 0; }
+  .inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .light { color: rgba(255,255,255,.75); }
+  .eyebrow.light { color: var(--orange); }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.5rem; }
+  .speed { position: relative; aspect-ratio: 1; max-width: 360px; margin: 0 auto; display: grid; place-items: center; text-align: center; }
+  .ring { position: absolute; inset: 0; border-radius: 50%; border: 14px solid rgba(255,255,255,.08); border-top-color: var(--orange); border-right-color: var(--orange); animation: spin 6s linear infinite; }
+  .num { font-size: 4.5rem; font-weight: 900; letter-spacing: -.04em; }
+  .num span { font-size: 6rem; color: var(--orange); }
+  .sub { color: rgba(255,255,255,.6); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 860px) { .inner { grid-template-columns: 1fr; } .hero { padding: 64px 0; } }
+</style>

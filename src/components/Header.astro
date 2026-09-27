@@ -1,0 +1,31 @@
+---
+const links = [
+  { href: '/#plans', label: 'Home Fibre' },
+  { href: '/mobile', label: 'Mobile' },
+  { href: '/#tv', label: 'TV' },
+  { href: '/#support', label: 'Support' },
+];
+---
+<header class="header">
+  <div class="container bar">
+    <a href="/" class="logo" aria-label="Home">
+      <span class="dot"></span><span>uni<b>fi</b></span>
+    </a>
+    <nav>
+      {links.map(l => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <a href="/#plans" class="btn btn-primary small">Get connected</a>
+  </div>
+</header>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; gap: 32px; height: 68px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; color: var(--navy); }
+  .logo b { color: var(--orange); }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--orange); }
+  nav { display: flex; gap: 24px; margin-left: auto; font-weight: 600; color: var(--muted); }
+  nav a:hover { color: var(--orange); }
+  .small { padding: .55rem 1.1rem; }
+  @media (max-width: 720px) { nav { display: none; } .small { margin-left: auto; } }
+</style>

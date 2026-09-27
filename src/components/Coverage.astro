@@ -1,0 +1,27 @@
+<section id="coverage" class="section soft">
+  <div class="container box">
+    <div>
+      <p class="eyebrow">Coverage</p>
+      <h2>Is fibre available at your address?</h2>
+      <p class="lead">Enter your postcode and we will tell you which plans you can get.</p>
+    </div>
+    <form class="form" onsubmit="event.preventDefault(); this.querySelector('output').textContent = 'Good news, fibre is available at ' + this.postcode.value + '. Plans up to 2Gbps.'">
+      <label>
+        <span>Postcode</span>
+        <input name="postcode" inputmode="numeric" pattern="[0-9]{5}" placeholder="e.g. 50480" required />
+      </label>
+      <button class="btn btn-primary" type="submit">Check now</button>
+      <output></output>
+    </form>
+  </div>
+</section>
+
+<style>
+  .box { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .form { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; }
+  label { display: grid; gap: 6px; font-weight: 600; }
+  input { font: inherit; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 10px; }
+  input:focus { outline: 2px solid var(--orange); border-color: transparent; }
+  output { color: var(--navy); font-weight: 600; min-height: 1.5em; }
+  @media (max-width: 860px) { .box { grid-template-columns: 1fr; } }
+</style>
