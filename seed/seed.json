@@ -1,0 +1,91 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "defaultLocale": "en",
+  "meta": {
+    "name": "unifi-inspired demo",
+    "description": "Fibre, mobile and hero content for the sample site",
+    "author": "Murtaza Mustafa"
+  },
+  "settings": {
+    "title": "unifi-inspired demo",
+    "tagline": "Fast home fibre, mobile and TV plans for Malaysia."
+  },
+  "collections": [
+    {
+      "slug": "hero",
+      "label": "Hero",
+      "labelSingular": "Hero",
+      "description": "Headline block at the top of the home page. Only the first published entry is used.",
+      "routable": false,
+      "titleField": "heading",
+      "supports": ["drafts", "revisions"],
+      "fields": [
+        { "slug": "eyebrow", "label": "Eyebrow", "type": "string", "defaultValue": "Home Fibre" },
+        { "slug": "heading", "label": "Heading", "type": "string", "required": true },
+        { "slug": "subheading", "label": "Subheading", "type": "text" },
+        { "slug": "speed_number", "label": "Big number", "type": "string", "defaultValue": "2" },
+        { "slug": "speed_unit", "label": "Unit", "type": "string", "defaultValue": "Gbps" }
+      ]
+    },
+    {
+      "slug": "fibre_plans",
+      "label": "Fibre plans",
+      "labelSingular": "Fibre plan",
+      "description": "Home fibre plans shown on the home page, ordered by Sort order.",
+      "routable": false,
+      "titleField": "name",
+      "supports": ["drafts", "revisions", "search"],
+      "admin": { "listColumns": ["speed", "price", "popular", "sort_order"] },
+      "fields": [
+        { "slug": "name", "label": "Name", "type": "string", "required": true, "searchable": true },
+        { "slug": "speed", "label": "Speed", "type": "string", "required": true },
+        { "slug": "price", "label": "Price (RM/month)", "type": "integer", "required": true, "validation": { "min": 0 } },
+        { "slug": "perks", "label": "Perks (one per line)", "type": "text" },
+        { "slug": "popular", "label": "Most popular", "type": "boolean", "defaultValue": false },
+        { "slug": "sort_order", "label": "Sort order", "type": "integer", "indexed": true, "defaultValue": 0 }
+      ]
+    },
+    {
+      "slug": "mobile_plans",
+      "label": "Mobile plans",
+      "labelSingular": "Mobile plan",
+      "description": "Postpaid plans shown on the Mobile page, ordered by Sort order.",
+      "routable": false,
+      "titleField": "name",
+      "supports": ["drafts", "revisions", "search"],
+      "admin": { "listColumns": ["data", "price", "sort_order"] },
+      "fields": [
+        { "slug": "name", "label": "Name", "type": "string", "required": true, "searchable": true },
+        { "slug": "data", "label": "Data allowance", "type": "string", "required": true },
+        { "slug": "price", "label": "Price (RM/month)", "type": "integer", "required": true, "validation": { "min": 0 } },
+        { "slug": "sort_order", "label": "Sort order", "type": "integer", "indexed": true, "defaultValue": 0 }
+      ]
+    }
+  ],
+  "content": {
+    "hero": [
+      {
+        "id": "hero-main",
+        "data": {
+          "eyebrow": "Home Fibre",
+          "heading": "Fibre that keeps up with the whole house.",
+          "subheading": "Up to 2Gbps symmetric speeds, mesh Wi-Fi included, and installation in as fast as 3 working days.",
+          "speed_number": "2",
+          "speed_unit": "Gbps"
+        }
+      }
+    ],
+    "fibre_plans": [
+      { "id": "fibre-100", "data": { "name": "Fibre 100", "speed": "100Mbps", "price": 89, "perks": "Unlimited data\nFree Wi-Fi 6 router\n2 devices streaming HD", "popular": false, "sort_order": 1 } },
+      { "id": "fibre-300", "data": { "name": "Fibre 300", "speed": "300Mbps", "price": 129, "perks": "Unlimited data\nFree Wi-Fi 6 router\nTV pack with 40+ channels", "popular": true, "sort_order": 2 } },
+      { "id": "fibre-1g", "data": { "name": "Fibre 1Gbps", "speed": "1Gbps", "price": 199, "perks": "Unlimited data\nMesh Wi-Fi (2 units)\nTV pack + 1 mobile line", "popular": false, "sort_order": 3 } },
+      { "id": "fibre-2g", "data": { "name": "Fibre 2Gbps", "speed": "2Gbps", "price": 299, "perks": "Symmetric 2Gbps\nMesh Wi-Fi (3 units)\nTV pack + 2 mobile lines", "popular": false, "sort_order": 4 } }
+    ],
+    "mobile_plans": [
+      { "id": "mobile-39", "data": { "name": "Postpaid 39", "data": "30GB", "price": 39, "sort_order": 1 } },
+      { "id": "mobile-69", "data": { "name": "Postpaid 69", "data": "100GB", "price": 69, "sort_order": 2 } },
+      { "id": "mobile-99", "data": { "name": "Postpaid 99", "data": "Unlimited", "price": 99, "sort_order": 3 } }
+    ]
+  }
+}

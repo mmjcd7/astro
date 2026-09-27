@@ -1,16 +1,14 @@
 ---
-const plans = [
-  { name: 'Fibre 100', speed: '100Mbps', price: 89, perks: ['Unlimited data', 'Free Wi‑Fi 6 router', '2 devices streaming HD'] },
-  { name: 'Fibre 300', speed: '300Mbps', price: 129, perks: ['Unlimited data', 'Free Wi‑Fi 6 router', 'TV pack with 40+ channels'], popular: true },
-  { name: 'Fibre 1Gbps', speed: '1Gbps', price: 199, perks: ['Unlimited data', 'Mesh Wi‑Fi (2 units)', 'TV pack + 1 mobile line'] },
-  { name: 'Fibre 2Gbps', speed: '2Gbps', price: 299, perks: ['Symmetric 2Gbps', 'Mesh Wi‑Fi (3 units)', 'TV pack + 2 mobile lines'] },
-];
+import { loadPlans, perkLines } from '../lib/cms';
+type Plan = { name: string; speed: string; price: number; perks?: string; popular?: boolean };
+const plans = await loadPlans<Plan>('fibre_plans');
 ---
 <section id="plans" class="section soft">
   <div class="container">
     <p class="eyebrow">Plans</p>
     <h2>Pick a speed. Everything else is included.</h2>
     <p class="lead">No contract on speed upgrades. Prices shown per month, 24‑month term.</p>
+    {plans.length === 0 && <p class="empty">No plans published yet. Add some in the <a href="/_emdash/admin/">CMS admin</a>.</p>}
     <div class="grid grid-4 plans">
       {plans.map(p => (
         <div class:list={['card', 'plan', { popular: p.popular }]}>
@@ -18,7 +16,7 @@ const plans = [
           <h3>{p.name}</h3>
           <div class="speed">{p.speed}</div>
           <div class="price"><small>RM</small>{p.price}<small>/mth</small></div>
-          <ul>{p.perks.map(x => <li>{x}</li>)}</ul>
+          <ul>{perkLines(p.perks).map(x => <li>{x}</li>)}</ul>
           <a href="#coverage" class="btn btn-outline">Choose plan</a>
         </div>
       ))}
@@ -28,6 +26,8 @@ const plans = [
 
 <style>
   .plans { margin-top: 2rem; }
+  .empty { color: var(--muted); }
+  .empty a { color: var(--orange); font-weight: 600; }
   .plan { position: relative; display: flex; flex-direction: column; }
   .plan.popular { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255,106,19,.15); }
   .badge { position: absolute; top: -12px; left: 24px; background: var(--orange); color: #fff; font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; }

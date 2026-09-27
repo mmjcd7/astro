@@ -1,10 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-const plans = [
-  { name: 'Postpaid 39', data: '30GB', price: 39 },
-  { name: 'Postpaid 69', data: '100GB', price: 69 },
-  { name: 'Postpaid 99', data: 'Unlimited', price: 99 },
-];
+import { loadPlans } from '../lib/cms';
+type Plan = { name: string; data: string; price: number };
+const plans = await loadPlans<Plan>('mobile_plans');
 ---
 <Base title="Mobile">
   <section class="section">
@@ -12,6 +10,7 @@ const plans = [
       <p class="eyebrow">Mobile</p>
       <h2>Postpaid plans that pair with your fibre.</h2>
       <p class="lead">5G included on every plan. Bundle with Home Fibre and save RM20 a month per line.</p>
+      {plans.length === 0 && <p class="empty">No plans published yet. Add some in the <a href="/_emdash/admin/">CMS admin</a>.</p>}
       <div class="grid grid-3" style="margin-top:2rem">
         {plans.map(p => (
           <div class="card">
@@ -27,6 +26,8 @@ const plans = [
 </Base>
 
 <style>
+  .empty { color: var(--muted); }
+  .empty a { color: var(--orange); font-weight: 600; }
   .data { font-weight: 700; font-size: 1.4rem; color: var(--navy); }
   .data small { color: var(--muted); font-weight: 500; font-size: .9rem; }
   .price { font-size: 2.4rem; font-weight: 900; color: var(--navy); }

@@ -1,9 +1,21 @@
+---
+import { loadHero } from '../lib/cms';
+const hero = (await loadHero()) ?? {
+  eyebrow: 'Home Fibre',
+  heading: 'Fibre that keeps up with the whole house.',
+  subheading: 'Up to 2Gbps symmetric speeds, mesh Wi-Fi included, and installation in as fast as 3 working days.',
+  speedNumber: '2',
+  speedUnit: 'Gbps',
+};
+const num = hero.speedNumber ?? hero.speed_number ?? '2';
+const unit = hero.speedUnit ?? hero.speed_unit ?? 'Gbps';
+---
 <section class="hero">
   <div class="container inner">
     <div>
-      <p class="eyebrow light">Home Fibre</p>
-      <h1>Fibre that keeps up<br />with the whole house.</h1>
-      <p class="lead light">Up to 2Gbps symmetric speeds, mesh Wi‑Fi included, and installation in as fast as 3 working days.</p>
+      <p class="eyebrow light">{hero.eyebrow}</p>
+      <h1>{hero.heading}</h1>
+      <p class="lead light">{hero.subheading}</p>
       <div class="cta">
         <a href="#plans" class="btn btn-primary">See plans</a>
         <a href="#coverage" class="btn btn-ghost">Check coverage</a>
@@ -11,7 +23,7 @@
     </div>
     <div class="speed" aria-hidden="true">
       <div class="ring"></div>
-      <div class="num"><span>2</span>Gbps</div>
+      <div class="num"><span>{num}</span>{unit}</div>
       <div class="sub">symmetric download / upload</div>
     </div>
   </div>
